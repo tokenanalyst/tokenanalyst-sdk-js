@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "allowJs": true,
+    "jsx": "react",
+    "removeComments": true,
+    "sourceMap": false,
+    "target": "es6",
+    "outDir": "lib"
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "support"
+  ]
+}
