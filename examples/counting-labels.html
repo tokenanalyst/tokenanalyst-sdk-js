@@ -13,13 +13,13 @@
 	</div>
 
 	<script>
-		
 		const t = new ta.TokenAnalyst();
-    	
+
 		var ctx = document.getElementById('chart-area').getContext('2d');
+
 		var chart = new Chart(ctx, {
 			// The type of chart we want to create
-			type: 'bar',
+			type: 'horizontalBar',
 
 			// The data for our dataset
 			data: {
@@ -35,28 +35,31 @@
 			// Configuration options go here
 			options: {}
 		});
-
-		setInterval(() => chart.data.datasets[0].data[0] = chart.data.datasets[0].data[0] + 1, 1000);
+		Chart.scaleService.updateScaleDefaults('linear', {
+			ticks: {
+				min: 0
+			}
+		});
 
 		const counts = {}
 
 		function onRecord(record) {
-			if(record.FROMLABEL != null) {
-				if(counts[record.FROMLABEL] == undefined)
+			if (record.FROMLABEL != null) {
+				if (counts[record.FROMLABEL] == undefined)
 					counts[record.FROMLABEL] = 1
 				else {
 					counts[record.FROMLABEL] = counts[record.FROMLABEL] + 1
 				}
 			}
-			if(record.TOLABEL != null) {
-				if(counts[record.TOLABEL] == undefined)
+			if (record.TOLABEL != null) {
+				if (counts[record.TOLABEL] == undefined)
 					counts[record.TOLABEL] = 1
 				else {
 					counts[record.TOLABEL] = counts[record.TOLABEL] + 1
 				}
 			}
 			chart.data.labels = Object.keys(counts)
-			chart.data.datasets.data = Object.keys(counts)
+			chart.data.datasets[0].data = Object.values(counts)
 			console.log(counts)
 			chart.update();
 		}
