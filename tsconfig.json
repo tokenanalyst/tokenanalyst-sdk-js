@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "es6",
+    "target": "es2015",
     "noImplicitAny": true,
     "allowJs": true,
     "jsx": "react",
     "removeComments": true,
     "sourceMap": false,
-    "target": "es6",
-    "outDir": "lib"
+    "outDir": "./dist-node/"
   },
   "exclude": [
     "node_modules",
-    "dist",
-    "support"
+    "dist-web",
+    "examples",
+    "webpack.config.js"
   ]
 }

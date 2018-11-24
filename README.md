@@ -26,3 +26,21 @@ ta.streams.transactionsWithLabelsAndPrice.subscribe(console.log,
 ]);
 ```
 
+## Building the Library
+
+```
+$ npm install 
+```
+
+For building the browser library to interface the API 
+
+```
+$ npm run build-web
+```
+
+For building the NodeJS module to interface the API
+
+```
+$ npm run build-node
+```
+
