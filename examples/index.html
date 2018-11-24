@@ -1,6 +1,11 @@
 <html>
 <head>
-  <script src="../dist/bundle.js"></script>
+  <script src="../dist-web/bundle.js"></script>
+
+  <script>
+    const t = new ta.TokenAnalyst();
+    t.streams.transactionsWithLabelsAndPrice.subscribe(console.log);
+  </script>
 </head>
 <body>
 </body>
