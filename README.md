@@ -35,7 +35,6 @@ $ npm install
 For building the browser library to interface the API 
 
 ```
-$ npm run build-node
 $ npm run build-web
 ```
 
