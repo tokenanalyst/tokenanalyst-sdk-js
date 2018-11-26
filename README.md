@@ -2,7 +2,21 @@
 
 The full documentation for the SDK can be found on the official documentation website [https://docs.tokenanalyst.io/](https://docs.tokenanalyst.io/#/).
 
-## How to use in your project
+## How to use it in the browser
+
+Just add it to the head of your HTML document. The function console.log is called everytime a new event arrives on that stream.
+
+```
+<head>
+  <script src="https://s3.amazonaws.com/dev.tokenanalyst.io/sdk.latest.js"></script>
+  <script>
+    const t = new ta.TokenAnalyst();
+    t.streams.transactionsWithLabelsAndPrice.subscribe(console.log);
+  </script>
+</head>
+```  
+
+## How to use it in your NodeJS project
 
 Create a new project
 
