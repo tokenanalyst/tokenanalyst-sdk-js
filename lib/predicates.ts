@@ -106,7 +106,13 @@ export class FromEntity extends Predicate {
   }
 
   isTrue(data: any): boolean {
-    return data.TX.FROMENTITY == this.entity;
+    return data.FROMENTITY == this.entity;
+  } 
+}
+
+export class FromEntityExists extends Predicate {
+  isTrue(data: any): boolean {
+    return data.FROMENTITY != "" && data.FROMENTITY != null;
   } 
 }
 
@@ -119,8 +125,14 @@ export class ToEntity extends Predicate {
   }
 
   isTrue(data: any): boolean {
-    return data.TX.TOENTITY == this.entity;
+    return data.TOENTITY == this.entity;
   }
+}
+
+export class ToEntityExists extends Predicate {
+  isTrue(data: any): boolean {
+    return data.TOENTITY != "" && data.TOENTITY != null;
+  } 
 }
 
 export class FromAddress extends Predicate {
