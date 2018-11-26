@@ -1,6 +1,6 @@
 # TokenAnalyst SDK 
 
-## How to use
+## How to use in your project
 
 Create a new project
 
@@ -26,7 +26,7 @@ ta.streams.transactionsWithLabelsAndPrice.subscribe(console.log,
 ]);
 ```
 
-## Building the Library
+## How to build the library 
 
 ```
 $ npm install 
@@ -35,6 +35,7 @@ $ npm install
 For building the browser library to interface the API 
 
 ```
+$ npm run build-node
 $ npm run build-web
 ```
 
