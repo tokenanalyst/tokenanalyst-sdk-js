@@ -8,7 +8,7 @@ Just add it to the head of your HTML document. The function console.log is calle
 
 ```
 <head>
-  <script src="https://s3.amazonaws.com/dev.tokenanalyst.io/sdk.latest.js"></script>
+  <script src="https://s3.amazonaws.com/cdn.tokenanalyst.io/sdk.latest.js"></script>
   <script>
     const t = new ta.TokenAnalyst();
     t.streams.transactionsWithLabelsAndPrice.subscribe(console.log);
