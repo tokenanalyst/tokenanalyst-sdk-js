@@ -1,6 +1,6 @@
 # TokenAnalyst SDK 
 
-## How to use
+## How to use in your project
 
 Create a new project
 
@@ -24,5 +24,23 @@ ta.streams.transactionsWithLabelsAndPrice.subscribe(console.log,
   new FromOrToLabelExists(),
   new USDGreaterThan(100)
 ]);
+```
+
+## How to build the library 
+
+```
+$ npm install 
+```
+
+For building the browser library to interface the API 
+
+```
+$ npm run build-web
+```
+
+For building the NodeJS module to interface the API
+
+```
+$ npm run build-node
 ```
 

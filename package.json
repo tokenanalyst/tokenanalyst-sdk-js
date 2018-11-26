@@ -1,10 +1,12 @@
 {
   "name": "@tokenanalyst/sdk",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "TokenAnalyst API SDK",
-  "main": "./lib/index",
+  "main": "./dist-node/index",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-node": "tsc",
+    "build-web": "tsc && ./node_modules/.bin/webpack ."
   },
   "keywords": [
     "blockchain",
@@ -15,14 +17,17 @@
   "homepage": "https://www.tokenanalyst.io",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^10.12.9",
-    "@types/socket.io-client": "^1.4.32",
-    "socket.io-client": "^2.0.2",
-    "socket.io-json-parser": "^2.1.0",
-    "winston": "^3.1.0"
+    "@types/node": "10.12.9",
+    "@types/socket.io-client": "1.4.32",
+    "socket.io-client": "2.0.2",
+    "socket.io-json-parser": "2.1.0",
+    "ts-loader": "5.3.0",
+    "webpack": "4.26.0",
+    "winston": "3.1.0"
   },
   "devDependencies": {
-    "typescript": "^3.1.6"
+    "typescript": "^3.1.6",
+    "webpack-cli": "^3.1.2"
   },
   "directories": {
     "lib": "lib",
