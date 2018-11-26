@@ -97,6 +97,44 @@ export class FromOrToLabelExists extends Predicate {
   }
 }
 
+export class FromEntity extends Predicate {
+  private entity: string
+
+  constructor(entity: string) {
+    super()
+    this.entity = entity;
+  }
+
+  isTrue(data: any): boolean {
+    return data.FROMENTITY == this.entity;
+  } 
+}
+
+export class FromEntityExists extends Predicate {
+  isTrue(data: any): boolean {
+    return data.FROMENTITY != "" && data.FROMENTITY != null;
+  } 
+}
+
+export class ToEntity extends Predicate {
+  private entity: string
+
+  constructor(entity: string) {
+    super()
+    this.entity = entity;
+  }
+
+  isTrue(data: any): boolean {
+    return data.TOENTITY == this.entity;
+  }
+}
+
+export class ToEntityExists extends Predicate {
+  isTrue(data: any): boolean {
+    return data.TOENTITY != "" && data.TOENTITY != null;
+  } 
+}
+
 export class FromAddress extends Predicate {
   private addr: string
 

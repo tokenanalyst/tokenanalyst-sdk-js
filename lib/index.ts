@@ -35,12 +35,14 @@ export class TokenAnalyst {
       ethVolume24hToEntity: new Stream(
         this.onConnected,
         "API_T_TXS6_LABELS_JPRICE_GTOENTITY_WDAY_event",
-        "24h ETH volume towards labelled entities"
+        "24h ETH volume towards labelled entities",
+        Array(new predicates.ToEntityExists())
       ),
       ethVolume24hFromEntity: new Stream(
         this.onConnected,
         "API_T_TXS6_LABELS_JPRICE_GFROMENTITY_WDAY_event",
-        "24h ETH volume from labelled entities"
+        "24h ETH volume from labelled entities",
+        Array(new predicates.FromEntityExists())
       )
     };
   }
@@ -50,20 +52,24 @@ class Stream {
   private description: string;
   private eventName: string;
   private socket: Promise<SocketIOClient.Socket>;
+  private streamPredicates: Array<predicates.Predicate>;
 
   constructor(
     socket: Promise<SocketIOClient.Socket>,
     eventName: string,
-    description: string
+    description: string,
+    streamPredicates: Array<predicates.Predicate> = Array()
   ) {
     this.eventName = eventName;
     this.description = description;
     this.socket = socket;
+    this.streamPredicates = streamPredicates;
   }
 
   subscribe(onEvent: Function, predicates: Array<predicates.Predicate> = Array()) {
     this.socket.then((s: SocketIOClient.Socket) => {
       s.on(this.eventName, (event: any) => {
+        predicates.push(...this.streamPredicates)
         if (predicates.map(p => p.isTrue(event)).every(b => b)) 
           onEvent(event);
       });
