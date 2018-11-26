@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-node": "tsc",
-    "build-web": "TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" ./node_modules/.bin/webpack"
+    "build-web": "./node_modules/.bin/webpack",
+    "publish-node": "npm publish --access public",
+    "publish-web": "aws s3 cp dist-web/bundle.js s3://dev.tokenanalyst.io/sdk.latest.js"
   },
   "keywords": [
     "blockchain",

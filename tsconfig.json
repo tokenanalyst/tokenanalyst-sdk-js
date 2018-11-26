@@ -3,8 +3,8 @@
     "module": "commonjs",
     "target": "es2015",
     "noImplicitAny": true,
+    "esModuleInterop": true,
     "allowJs": true,
-    "jsx": "react",
     "removeComments": true,
     "sourceMap": false,
     "outDir": "./dist-node/"
