@@ -2,7 +2,7 @@
 
 The full documentation for the SDK can be found on the official documentation website [https://docs.tokenanalyst.io/](https://docs.tokenanalyst.io/#/).
 
-## How to use it in the Browser
+## How to use it in the browser
 
 Just add it to the head of your HTML document. The function console.log is called everytime a new event arrives on that stream.
 
