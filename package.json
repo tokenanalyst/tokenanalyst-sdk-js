@@ -8,7 +8,7 @@
     "build-node": "tsc",
     "build-web": "./node_modules/.bin/webpack",
     "publish-node": "npm publish --access public",
-    "publish-web": "aws s3 cp dist-web/bundle.js s3://dev.tokenanalyst.io/sdk.latest.js"
+    "publish-web": "aws s3 cp dist-web/bundle.js s3://cdn.tokenanalyst.io/sdk.latest.js"
   },
   "keywords": [
     "blockchain",
