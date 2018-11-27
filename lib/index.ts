@@ -32,6 +32,18 @@ export class TokenAnalyst {
         "API_S_TXS6_LABELS_JPRICE_FETH_GMINUTE_event",
         "Last transactions which have 6 confirmations with labels and USD price"
       ),
+      ethVolume3hToEntity: new Stream(
+        this.onConnected,
+        "API_T_TXS6_LABELS_JPRICE_GTOENTITY_W3H_event",
+        "3h ETH volume towards labelled entities",
+        Array(new predicates.ToEntityExists())
+      ),
+      ethVolume3hFromEntity: new Stream(
+        this.onConnected,
+        "API_T_TXS6_LABELS_JPRICE_GFROMENTITY_W3H_event",
+        "3h ETH volume from labelled entities",
+        Array(new predicates.FromEntityExists())
+      ),   
       ethVolume24hToEntity: new Stream(
         this.onConnected,
         "API_T_TXS6_LABELS_JPRICE_GTOENTITY_WDAY_event",
