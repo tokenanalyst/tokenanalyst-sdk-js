@@ -48,7 +48,6 @@ Expected Result
 ### ethVolume24hToEntity
 > Stream containing the total amount of ETH (and it's corresponding USD value) that has flowed into specific entities during a 24 hour window. 
 
-*We only have entity labels for a select set of addresses, hence the ```TOENTITY``` field will have several null or empty values*
 
 Subscribe to the stream (similar to above)
 
@@ -92,8 +91,6 @@ Expected Result
 
 ### ethVolume24hFromEntity
 > Stream containing the total amount of ETH (and it's corresponding USD value) that has flowed out of specific entities during a 24 hour window. 
-
-*We only have entity labels for a select set of addresses, hence the ```FROMENTITY``` field will have several null or empty values*
 
 Subscribe to the stream (similar to above)
 

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Reem+Kufi');
+
+.app-name-link{
+    font-family: 'Reem Kufi', sans-serif;
+}
+
+.markdown-section code,.token.keyword, .token.function, .token.number {
+    color: #e83e8c;
+}
+
+.sidebar {
+    padding-left: 1.5rem;
+}
+
+.markdown-section h2 {
+    font-size: 2rem;
+}
+
+.markdown-section h3 {
+    font-size: 1.70rem;
+}
+
+body {
+    font-size: 16px;
+}
