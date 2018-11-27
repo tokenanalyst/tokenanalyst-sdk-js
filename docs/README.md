@@ -1,5 +1,7 @@
 ## Getting Started {docsify-ignore}
 
+### NodeJS
+
 Install the SDK via npm
 
 ```
@@ -25,4 +27,17 @@ ta.streams.transactionsWithLabelsAndPrice.subscribe(console.log,
 ]);
 ```
 
+### Usage in the browser
+
+Just add the CDN link to the head of your HTML document. In the below example, the function console.log is called everytime a new event arrives on that stream.
+
+```
+<head>
+  <script src="https://s3.amazonaws.com/cdn.tokenanalyst.io/sdk.latest.js"></script>
+  <script>
+    const t = new ta.TokenAnalyst();
+    t.streams.transactionsWithLabelsAndPrice.subscribe(console.log);
+  </script>
+</head>
+```  
 

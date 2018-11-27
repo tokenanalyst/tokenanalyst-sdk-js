@@ -44,6 +44,35 @@ Expected Result
      S: '0x16ad01900b34722e86ad6fec80a2aeef67028c0e90e43173331f7a19765d56e7' } }
 ```
 
+**Return result description**
+
+| Attribute             | Type      | Description                                                                                                                |
+|-----------------------|-----------|----------------------------------------------------------------------------------------------------------------------------|
+| `PRICE`               | *float*   | Price of ETH at the time of the transaction                                                                                |
+| `MINEDAT`             | *integer* | Unix timestamp of when the transaction was mined on the blockchain                                                         |
+| `TXHASH`              | *string*  | Hash of the transaction                                                                                                    |
+| `FROMADDR`            | *string*  | Hash of the sender address                                                                                                 |
+| `FROMLABEL`           | *string*  | Label specifically identifying the senders address in our database (ex: 'Binance_1'). ```null``` if no label               |
+| `FROMCLASSIFICATION`  | *string*  | Tag classifying the sender in our database (ex: 'Exchange'). ```null``` if no label                                        |
+| `FROMENTITY`          | *string*  | Entity tag in our database identifying who/what is the owner of the sender address (ex: 'Binance'). ```null``` if no label |
+| `TOADDR`              | *string*  | Hash of the receiver address                                                                                               |
+| `TOLABEL`             | *string*  | Label specifically identifying the receivers address in our database. ```null``` if no label                               |
+| `TOCLASSIFICATION`    | *string*  | Tag classifying the receiver in our database (ex: 'Exchange'). ```null``` if no label                                      |
+| `TOENTITY`            | *string*  | Entity tag in our database identifying who/what is the owner of the sender address. ```null``` if no label                 |
+| `WEIVALUE`            | *string*  | Wei value of the amount transferred in this transaction                                                                    |
+| `TX.BLOCKHASH`        | *string*  | Hash of the block that this transaction was mined in                                                                       |
+| `TX.BLOCKNUMBER`      | *integer* | Number of the block that this transaction was mined in                                                                     |
+| `TX.FROMADDR`         | *string*  | Hash of the sender address (same as above)                                                                                 |
+| `TX.GAS`              | *integer* | Amount of gas spent for this transaction                                                                                   |
+| `TX.GASPRICE`         | *integer* | Price of the gas for this transaction in Wei                                                                               |
+| `TX.HASH`             | *string*  | Hash of this transaction (same as above)                                                                                   |
+| `TX.NONCE`            | *integer* | the number of transactions made by the sender prior to this one                                                            |
+| `TX.TOADDR`           | *string*  | Hash of the sender (same as above)                                                                                         |
+| `TX.TRANSACTIONINDEX` | *integer* | Integer of the transaction's index position in the block                                                                   |
+| `TX.WEIVALUE`         | *string*  | Wei value of the amount transferred in this transaction (same as above)                                                    |
+| `TX.V`                | *integer* | ECDSA recovery id                                                                                                          |
+| `TX.R`                | *string*  | ECDSA signature r                                                                                                          |
+| `TX.S`                | *string*  | ECDSA signature s                                                                                                          |
 
 ### ethVolume24hToEntity
 > Stream containing the total amount of ETH (and it's corresponding USD value) that has flowed into specific entities during a 24 hour window. 
@@ -87,6 +116,15 @@ Expected Result
   USD_VALUE: 1221991.8621494106 }
 ```
 
+**Return result description**
+
+| Attribute   | Type      | Description                                                                                |
+|-------------|-----------|--------------------------------------------------------------------------------------------|
+| `TOENTITY`  | *string*  | Entity tag in our database identifying who/what is the owner of the sender address         |
+| `STARTTIME` | *integer* | Unix epoch time in **milliseconds** of the start time of the aggregation window            |
+| `ENDTIME`   | *integer* | Unix epoch time in **milliseconds** of the end time of the aggregation window              |
+| `ETH_VALUE` | *float*   | Amount of ETH that has flowed to this entity in the specified time window                  |
+| `USD_VALUE` | *float*   | USD value of the amount of ETH that has flowed to this entity in the specified time window |
 
 
 ### ethVolume24hFromEntity
@@ -130,3 +168,12 @@ Expected Result
   USD_VALUE: 290775.96243005444 }
 ```
 
+**Return result description**
+
+| Attribute   | Type      | Description                                                                                |
+|-------------|-----------|--------------------------------------------------------------------------------------------|
+| `FROMENTITY`| *string*  | Entity tag in our database identifying who/what is the owner of the receiver address       |
+| `STARTTIME` | *integer* | Unix epoch time in **milliseconds** of the start time of the aggregation window            |
+| `ENDTIME`   | *integer* | Unix epoch time in **milliseconds** of the end time of the aggregation window              |
+| `ETH_VALUE` | *float*   | Amount of ETH that has flowed from this entity in the specified time window                |
+| `USD_VALUE` | *float*   | USD value of the amount of ETH that has flowed from this entity in the specified window    |
