@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0
+
+### Additions and Improvements
+
+- Added ethVolume3hToEntity, ethVolume3hFromEntity streams
+
 ## 1.2.1
 
 ### Removed
