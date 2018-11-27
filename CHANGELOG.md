@@ -5,6 +5,7 @@
 ### Additions and Improvements
 
 - Added ethVolume3hToEntity, ethVolume3hFromEntity streams
+- Bugfix: FromOrToLabelExists bug
 
 ## 1.2.1
 
