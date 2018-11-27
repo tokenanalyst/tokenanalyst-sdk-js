@@ -93,7 +93,7 @@ export class FromLabelExists extends Predicate {
 
 export class FromOrToLabelExists extends Predicate {
   isTrue(data: any): boolean {
-    return data.FROMLABEL != null || data.FROMLABEL != null;
+    return data.FROMLABEL != null || data.TOLABEL != null;
   }
 }
 
@@ -133,6 +133,12 @@ export class ToEntityExists extends Predicate {
   isTrue(data: any): boolean {
     return data.TOENTITY != "" && data.TOENTITY != null;
   } 
+}
+
+export class FromOrToEntityExists extends Predicate {
+  isTrue(data: any): boolean {
+    return (data.FROMENTITY != "" && data.FROMENTITY != null) || (data.TOENTITY != "" && data.TOENTITY != null);
+  }
 }
 
 export class FromAddress extends Predicate {
