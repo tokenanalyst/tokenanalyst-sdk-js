@@ -148,8 +148,10 @@ Expected Result
 | `ETH_VALUE` | *float*   | Amount of ETH that has flowed from this entity in the specified time window                |
 | `USD_VALUE` | *float*   | USD value of the amount of ETH that has flowed from this entity in the specified window    |
 
+
+
 ### ethVolume3hToEntity
-> Stream containing the total amount of ETH (and it's corresponding USD value) that has flowed into specific entities during a 24 hour window. 
+> Stream containing the total amount of ETH (and it's corresponding USD value) that has flowed into specific entities during a 3 hour time window. 
 
 
 Subscribe to the stream (similar to above)
@@ -157,7 +159,7 @@ Subscribe to the stream (similar to above)
 ```javascript
 const ta = new TokenAnalyst()
 
-ta.streams.ethVolume24hToEntity.subscribe(console.log);
+ta.streams.ethVolume3hToEntity.subscribe(console.log);
 ```
 
 Expected Result
@@ -165,12 +167,12 @@ Expected Result
 ```json
 { FROMENTITY: 'Hotbit',
   STARTTIME: 1543276800000,
-  ENDTIME: 1543363200000,
+  ENDTIME: 1543287600000,
   ETH_VALUE: 1174.2391,
   USD_VALUE: 135019.7084925632 }
 { FROMENTITY: 'Binance',
   STARTTIME: 1543276800000,
-  ENDTIME: 1543363200000,
+  ENDTIME: 1543287600000,
   ETH_VALUE: 21934.7165,
   USD_VALUE: 2323761.293137457 }
 ```
@@ -185,15 +187,17 @@ Expected Result
 | `ETH_VALUE` | *float*   | Amount of ETH that has flowed to this entity in the specified time window                  |
 | `USD_VALUE` | *float*   | USD value of the amount of ETH that has flowed to this entity in the specified time window |
 
+
+
 ### ethVolume3hFromEntity
-> Stream containing the total amount of ETH (and it's corresponding USD value) that has flowed out of specific entities during a 24 hour window. 
+> Stream containing the total amount of ETH (and it's corresponding USD value) that has flowed out of specific entities during a 3 hour time window. 
 
 Subscribe to the stream (similar to above)
 
 ```javascript
 const ta = new TokenAnalyst()
 
-ta.streams.ethVolume24hFromEntity.subscribe(console.log);
+ta.streams.ethVolume3hFromEntity.subscribe(console.log);
 ```
 
 Expected Result
@@ -201,12 +205,12 @@ Expected Result
 ```json
 { FROMENTITY: 'Kucoin',
   STARTTIME: 1543276800000,
-  ENDTIME: 1543363200000,
+  ENDTIME: 1543276800000,
   ETH_VALUE: 3174.2391,
   USD_VALUE: 335019.7084925632 }
 { FROMENTITY: 'HitBTC',
   STARTTIME: 1543276800000,
-  ENDTIME: 1543363200000,
+  ENDTIME: 1543276800000,
   ETH_VALUE: 21934.7165,
   USD_VALUE: 2323761.293137457 }
 ```
