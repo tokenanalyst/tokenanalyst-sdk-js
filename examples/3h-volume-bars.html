@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>3h volume bars</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+	<script src="https://s3.amazonaws.com/cdn.tokenanalyst.io/sdk.latest.js"></script>
+</head>
+
+<body>
+	<div style="width:100%">
+		<canvas id="chart-area"></canvas>
+	</div>
+
+	<script>
+		const t = new ta.TokenAnalyst();
+
+		var ctx = document.getElementById('chart-area').getContext('2d');
+
+		var chart = new Chart(ctx, {
+			// The type of chart we want to create
+			type: 'horizontalBar',
+
+			// The data for our dataset
+			data: {
+				labels: [],
+				datasets: [{
+					label: "In-Flow",
+					backgroundColor: 'rgb(255, 99, 132)',
+					borderColor: 'rgb(255, 99, 132)',
+					data: [0],
+				},
+				{
+					label: "Out-Flow",
+					backgroundColor: '#0099ff',
+					borderColor: '#0099ff',
+					data: [1],
+				}]
+			},
+
+			// Configuration options go here
+			options: {}
+		});
+		Chart.scaleService.updateScaleDefaults('linear', {
+			ticks: {
+				min: 0
+			}
+		});
+
+		const data = {}
+
+		function updateChart() {
+			chart.data.labels = Object.keys(data)
+			
+			// dataset 0 inflows
+			const inflowData = Array();
+			Object.keys(data).forEach(function(value, index, array) {
+				const i = data[value].inflow
+				if(i == undefined)
+					inflowData.push(0)
+				else 
+					inflowData.push(i)
+			})
+			console.log(inflowData)
+			chart.data.datasets[0].data = inflowData
+
+			// dataset 1 outflows
+			const outflowData = Array();
+			Object.keys(data).forEach(function(value, index, array) {
+				const i = data[value].outflow
+				if(i == undefined)
+					outflowData.push(0)
+				else 
+					outflowData.push(i)
+			})
+			console.log(inflowData)
+			chart.data.datasets[1].data = outflowData
+
+			chart.update();
+		}
+
+		function outflow(record) {
+			if (record.FROMENTITY != null) {
+				if (data[record.FROMENTITY] == undefined) {
+					data[record.FROMENTITY] = {}
+					data[record.FROMENTITY].outflow = record.USD_VALUE
+				}
+				else {
+					data[record.FROMENTITY].outflow = record.USD_VALUE
+				}
+			}
+			//chart.data.labels = Object.keys(outflowData)
+			//chart.data.datasets[0].data = Object.values(outflowData)
+			//chart.update();
+			updateChart();
+			console.log(data)
+		}
+
+		function inflow(record) {
+			if (record.TOENTITY != null) {
+				if (data[record.TOENTITY] == undefined) {
+					data[record.TOENTITY] = {}
+					data[record.TOENTITY].inflow = record.USD_VALUE
+				}
+				else {
+					data[record.TOENTITY].inflow = record.USD_VALUE
+				}
+			}
+			
+			//chart.data.labels = Object.keys(inflowData)
+			//chart.data.datasets[1].data = Object.values(inflowData)
+			console.log(data)
+			updateChart();
+			//chart.update();
+		}
+		t.streams.ethVolume24hFromEntity.subscribe(outflow);
+		t.streams.ethVolume24hToEntity.subscribe(inflow);
+	</script>
+</body>
+
+</html>
