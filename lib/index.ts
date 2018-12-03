@@ -17,7 +17,6 @@ export class TokenAnalyst {
       ga.initialize('UA-113322596-4');
       ga.create('UA-113322596-4');
       ga.pageview('class-init');
-      console.log("initialized GA")
     }
 
     this.onConnected = new Promise(function(resolve, reject) {
