@@ -2,12 +2,23 @@
 import * as io from "socket.io-client";
 import * as predicates from "./predicates";
 
+declare function require(path: string): any;
+
 export class TokenAnalyst {
+  
   private onConnected: Promise<SocketIOClient.Socket>;
   private streams: object;
 
   constructor(url = "http://ws.tokenanalyst.io:8000/v1") {
     console.log(`connecting to ${url}`);
+    
+    if(window != undefined) {
+      const ga = require('./ga');
+      ga.initialize('UA-113322596-4');
+      ga.create('UA-113322596-4');
+      ga.pageview('class-init');
+      console.log("initialized GA")
+    }
 
     this.onConnected = new Promise(function(resolve, reject) {
       const socket = io.connect(
