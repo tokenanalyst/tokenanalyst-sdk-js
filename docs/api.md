@@ -186,7 +186,3 @@ GET https://www.tokenanalyst.io/api/v1/btc/transaction_details?apikey=API_KEY&tx
         "unit": "wei", 
     }
 ```
-
-
-
-
