@@ -1,5 +1,12 @@
 ## Changelog {docsify-ignore}
 
+### 1.4.0
+
+#### Additions and Improvements
+
+- Added v1 of Bitcoin and Ethereum API
+- Added endpoints for wallet balances and transactions lookups
+
 ### 1.3.0
 
 #### Additions and Improvements
