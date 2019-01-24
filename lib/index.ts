@@ -11,13 +11,13 @@ export class TokenAnalyst {
 
   constructor(url = "http://ws.tokenanalyst.io:8000/v1") {
     console.log(`connecting to ${url}`);
-    
-    if(window != undefined) {
+
+    if(typeof window !== 'undefined' && window) {
       const ga = require('./ga');
       ga.initialize('UA-113322596-4');
       ga.create('UA-113322596-4');
       ga.pageview('class-init');
-    }
+    };
 
     this.onConnected = new Promise(function(resolve, reject) {
       const socket = io.connect(
