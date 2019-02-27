@@ -167,7 +167,7 @@ export class ToAddress extends Predicate {
   } 
 }
 
-export class SmartContractAddress extends Predicate {
+export class EventSmartContractAddress extends Predicate {
   private addr: string
 
   constructor(addr: string) {
@@ -176,10 +176,19 @@ export class SmartContractAddress extends Predicate {
   }
 
   isTrue(data: any): boolean {
-    if (data.addresss){
       return data.addresss == this.addr;
-    }
-    else {
+  } 
+}
+
+export class FunctionCallSmartContractAddress extends Predicate {
+  private addr: string
+
+  constructor(addr: string) {
+    super()
+    this.addr = addr;
+  }
+
+  isTrue(data: any): boolean {
       return data.callTo == this.addr;
     }
   } 
