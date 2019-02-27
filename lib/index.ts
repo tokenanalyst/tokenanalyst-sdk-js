@@ -65,6 +65,16 @@ export class TokenAnalyst {
         "API_T_TXS6_LABELS_JPRICE_GFROMENTITY_WDAY_event",
         "24h ETH volume from labelled entities",
         Array(new predicates.FromEntityExists())
+      ),
+      smartContractEvents: new Stream(
+        this.onConnected,
+        "eth-ongoing-event",
+        "Smart Contract emmited events",
+      ),
+      smartContractFunctionCalls: new Stream(
+        this.onConnected,
+        "eth-ongoing-functioncall",
+        "Function calls to smart contracts",
       )
     };
   }

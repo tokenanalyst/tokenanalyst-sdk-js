@@ -166,3 +166,60 @@ export class ToAddress extends Predicate {
     return data.TX.TOADDR == this.addr;
   } 
 }
+
+export class SmartContractAddress extends Predicate {
+  private addr: string
+
+  constructor(addr: string) {
+    super()
+    this.addr = addr;
+  }
+
+  isTrue(data: any): boolean {
+    if (data.addresss){
+      return data.addresss == this.addr;
+    }
+    else {
+      return data.callTo == this.addr;
+    }
+  } 
+}
+
+export class SignatureHash extends Predicate {
+  private hash: string
+
+  constructor(hash: string) {
+    super()
+    this.hash = hash;
+  }
+
+  isTrue(data: any): boolean {
+    return data.signatureHash == this.hash;
+  } 
+}
+
+export class EventName extends Predicate {
+  private event: string
+
+  constructor(event: string) {
+    super()
+    this.event = event;
+  }
+
+  isTrue(data: any): boolean {
+    return data.event == this.event;
+  } 
+}
+
+export class FunctionName extends Predicate {
+  private functionName: string
+
+  constructor(functionName: string) {
+    super()
+    this.functionName = functionName;
+  }
+
+  isTrue(data: any): boolean {
+    return data.function == this.functionName;
+  } 
+}
