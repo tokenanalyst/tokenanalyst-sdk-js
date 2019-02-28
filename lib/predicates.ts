@@ -190,7 +190,6 @@ export class FunctionCallSmartContractAddress extends Predicate {
 
   isTrue(data: any): boolean {
       return data.callTo == this.addr;
-    }
   } 
 }
 

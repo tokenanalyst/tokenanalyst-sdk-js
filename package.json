@@ -1,6 +1,6 @@
 {
   "name": "@tokenanalyst/sdk",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "TokenAnalyst API SDK",
   "main": "./dist-node/index",
   "scripts": {
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "typescript": "^3.1.6",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.2.3"
   },
   "directories": {
     "lib": "lib",
