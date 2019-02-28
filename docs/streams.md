@@ -1,5 +1,129 @@
 ## Data Streams {docsify-ignore}
 
+### smartContractFunctionCalls
+> Stream of internal and external Function calls that have been confirmed on the ethereum mainnet.
+
+Connect to the websockets server after installing the package and subscribe to the stream
+
+```javascript
+const {TokenAnalyst} = require('@tokenanalyst/sdk');
+
+const ta = new TokenAnalyst()
+
+ta.streams.smartContractFunctionCalls.subscribe(console.log);
+```
+
+Expected Result
+
+```json
+{ blockNumber: 7279239,
+  transactionHash: '0x8c2e14bdb80887b7befe63fe3f37a70ede34ef19c0bd4643ba5631839d6c6dd9',
+  traceAddress: [],
+  callTo: '0xf429b7270F7078d5561789C15D301692e32B1e48',
+  callFrom: '0x13FB97da9d2407DA6dBc2D6C175b51d0f5d9d903',
+  transactionFrom: '0x13FB97da9d2407DA6dBc2D6C175b51d0f5d9d903',
+  signatureHash: '0x0f15f4c0',
+  function: 'activate()',
+  inputValues: <Buffer >,
+  decodedInputValues: [],
+  outputValues: <Buffer 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 5c 79 51 91>,
+  decodedOutputValues: [],
+  callType: 'call',
+  timestamp: 1551368209,
+  status: true }
+{ blockNumber: 7279239,
+  transactionHash: '0xcbdd65d342a2bc69d6401c2a335335448d0ffac0d4091beb9d509af7d331dc70',
+  traceAddress: [],
+  callTo: '0xc21022C5B4d5Dba5EE61044c065fc90D79DfB933',
+  callFrom: '0x30F770867b21F58e018F878b467b6635eCb3b1Ef',
+  transactionFrom: '0x30F770867b21F58e018F878b467b6635eCb3b1Ef',
+  signatureHash: '0xa9059cbb',
+  function: 'transfer(address,uint256)',
+  inputValues: <Buffer 00 00 00 00 00 00 00 00 00 00 00 00 c7 ba 3d 96 f2 d2 33 1e ba 78 6b 73 0e c1 3b 93 a3 fc 64 13 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ... >,
+  decodedInputValues: 
+   [ '0xC7bA3d96F2D2331EBA786b730ec13B93A3fC6413',
+     '42900000000000000000' ],
+  outputValues: <Buffer 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01>,
+  decodedOutputValues: [],
+  callType: 'call',
+  timestamp: 1551368209,
+  status: true }
+```
+
+**Return result description**
+
+| Attribute   | Type      | Description                                                                                |
+|-------------|-----------|--------------------------------------------------------------------------------------------|
+| `blockNumber`| *integer*  | Hash of the block that this function call was mined in         |
+| `transactionHash` | *string* | Hash of the transaction which contained this function call             |
+| `traceAddress`   | *array* | Location of this function call in the trace of this transaction              |
+| `callTo` | *string*   | Address where this function call was sent to                |
+| `callFrom` | *string*   | Address where this function call initiated from |
+| `transactionFrom`| *string*  | Address which initialized this transaction       |
+| `signatureHash` | *string* | Signature hash of the function   https://www.4byte.directory/         |
+| `function`   | *string* | Decoded names and types of this function              |
+| `inputValues` | *bytes*   | Input values of the function in bytes                |
+| `decodedInputValues` | *array*   | Decoded inputs based on function input types |
+| `outputValues`| *bytes*  | Output values of the function in bytes       |
+| `decodedOutputValues` | *array* | Decoded output values of the function output types |
+| `timestamp`   | *integer* | Unix epoch time in which this function call was mined              |
+| `status` | *boolean*   | Success or failure of this function call                |
+
+
+### smartContractEvents
+> Stream of Events that have been confirmed on the ethereum mainnet.
+
+Connect to the websockets server after installing the package and subscribe to the stream
+
+```javascript
+const {TokenAnalyst} = require('@tokenanalyst/sdk');
+
+const ta = new TokenAnalyst()
+
+ta.streams.smartContractEvents.subscribe(console.log);
+```
+
+Expected Result
+
+```json
+{ blockNumber: 7279280,
+  transactionHash: '0x4dd7d68d838916d92425f340ffbb8e28103a63a6d691e6814703509e9cd3d34a',
+  logIndex: 133,
+  address: '0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b',
+  signatureHash: '0x5152abf959f6564662358c2e52b702259b78bac5ee7842a0f01937e670efcc7d',
+  event: 'OrderCancelled(bytes32)',
+  parameterValues: <Buffer 2f 23 fb 13 d3 4a bd e4 5e 06 b0 3c ef 44 3d 2e 98 8d 73 09 53 29 7d c3 e7 56 ed 0e b4 26 54 af>,
+  decodedParameterValues: 
+   [ 'b\'/#\\xfb\\x13\\xd3J\\xbd\\xe4^\\x06\\xb0<\\xefD=.\\x98\\x8ds\\tS)}\\xc3\\xe7V\\xed\\x0e\\xb4&T\\xaf\'' ],
+  timestamp: 1551369160 }
+{ blockNumber: 7279280,
+  transactionHash: '0xa4bbca44ba36e0b1894c1bf0eadb197fdcc85057f102e13e84b5c3051767d417',
+  logIndex: 134,
+  address: '0x4ED25d8577feb83946B1548998fB7b157EAd8Bb9',
+  signatureHash: '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
+  event: 'Transfer(address,address,uint256)',
+  parameterValues: <Buffer 00 00 00 00 00 00 00 00 00 00 00 00 30 f7 70 86 7b 21 f5 8e 01 8f 87 8b 46 7b 66 35 ec b3 b1 ef 00 00 00 00 00 00 00 00 00 00 00 00 09 80 e2 6a 1f 27 ... >,
+  decodedParameterValues: 
+   [ '0x30F770867b21F58e018F878b467b6635eCb3b1Ef',
+     '0x0980E26a1f273200F25eF9256Bc3Af5476bA2152',
+     '10000000000000000000000' ],
+  timestamp: 1551369160 }
+```
+
+**Return result description**
+
+| Attribute   | Type      | Description                                                                                |
+|-------------|-----------|--------------------------------------------------------------------------------------------|
+| `blockNumber`| *integer*  | Hash of the block that this Event was mined in         |
+| `transactionHash` | *string* | Hash of the transaction which contained this Event             |
+| `logIndex`   | *integer* | Location of the log which contains this Event              |
+| `address` | *string*   | Address where this Event originated from                |
+| `signatureHash` | *string*   | Signature hash of the event |
+| `event`| *string*  | Decoded event based on signature hash       |
+| `parameterValues` | *bytes* | Parameters of this event in bytes         |
+| `decodedParameterValues`   | *array* | Decoded parameters of this event |
+| `timestamp`   | *integer* | Unix epoch time in which this event was mined              |
+
 ### transactionsWithLabelsAndPrice
 > Stream of transactions that have been confirmed on the Ethereum Mainnet with labels for certain addresses and USD value of ETH transacted
 

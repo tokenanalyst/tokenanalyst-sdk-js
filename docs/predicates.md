@@ -80,6 +80,11 @@ Expected Result
 
 | Filter                   | Input Parameter Type | Example Usage                                                  | Description                                                                                                   |
 |--------------------------|----------------------|----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| **EventSmartContractAddress**       | *string*             | new EventSmartContractAddress("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b")                                        | Filter for events which were emitted by a particular address                            |
+| **FunctionCallSmartContractAddress**          | *string*             | new FunctionCallSmartContractAddress("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b")                                          | Filter for function calls which were sent to a particular address                             |
+| **SignatureHash**           |  *string* | new SignatureHash("0xa9059cbb")                                          | Filter for events and function calls based on their signature hash                               |
+| **EventName**       | *string*             | new EventName("Transfer(address,address,uint256)")                                     | Filter for events based on their human readable names           |
+| **FunctionName**       | *string*             | new FunctionName("transfer(address,uint256)")                                     | Filter for function calls based on their human readable names           |
 | **EthGreaterThan**       | *number*             | new EthGreaterThan(0.5)                                        | Filter for transactions where ETH transferred is greater than the specified amount                            |
 | **EthLessThan**          | *number*             | new EthLessThan(25.5)                                          | Filter for transactions where ETH transferred is lesser than the specified amount                             |
 | **EthBetween**           |  (*number*,*number*) | new EthBetween(10,55)                                          | Filter for transactions where ETH transferred is in between the specified values                              |
