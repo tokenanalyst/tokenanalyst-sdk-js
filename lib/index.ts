@@ -68,12 +68,12 @@ export class TokenAnalyst {
       ),
       smartContractEvents: new Stream(
         this.onConnected,
-        "eth-ongoing-event",
+        "eth-ongoing-event_event",
         "Smart Contract emmited events",
       ),
       smartContractFunctionCalls: new Stream(
         this.onConnected,
-        "eth-ongoing-functioncall",
+        "eth-ongoing-functioncall_event",
         "Function calls to smart contracts",
       )
     };
