@@ -231,3 +231,29 @@ export class FunctionName extends Predicate {
     return data.function == this.functionName;
   } 
 }
+
+export class TokenAddress extends Predicate {
+  private tokenAddress: string
+
+  constructor(tokenAddress: string) {
+    super()
+    this.tokenAddress = tokenAddress;
+  }
+
+  isTrue(data: any): boolean {
+    return data.token == this.tokenAddress;
+  } 
+}
+
+export class HolderAddress extends Predicate {
+  private holderAddress: string
+
+  constructor(holderAddress: string) {
+    super()
+    this.holderAddress = holderAddress;
+  }
+
+  isTrue(data: any): boolean {
+    return data.holder == this.holderAddress;
+  } 
+}

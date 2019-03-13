@@ -75,6 +75,16 @@ export class TokenAnalyst {
         this.onConnected,
         "eth-ongoing-functioncall_event",
         "Function calls to smart contracts",
+      ),
+      erc20TokenTransfer: new Stream(
+        this.onConnected,
+        "eth-ongoing-erc20tokentransfer_event",
+        "Erc20 token transfer",
+      ),
+      erc20BalanceDiff: new Stream(
+        this.onConnected,
+        "eth-ongoing-erc20tokenbalancediff_event",
+        "Erc20 balance diff",
       )
     };
   }
