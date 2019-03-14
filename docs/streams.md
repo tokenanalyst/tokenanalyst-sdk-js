@@ -124,6 +124,112 @@ Expected Result
 | `decodedParameterValues`   | *array* | Decoded parameters of this event |
 | `timestamp`   | *integer* | Unix epoch time in which this event was mined              |
 
+### erc20TokenTransfer
+> Stream of erc20 token transfers that have been confirmed on the ethereum mainnet.
+
+Connect to the websockets server after installing the package and subscribe to the stream
+
+```javascript
+const {TokenAnalyst} = require('@tokenanalyst/sdk');
+
+const ta = new TokenAnalyst()
+
+ta.streams.erc20TokenTransfer.subscribe(console.log);
+```
+
+Expected Result
+
+```json
+{ blockNumber: 7366486,
+  transactionHash: '0xaf297e497b3010fddd75aacb851e8eb3c18f7c4bf2075e8ec5354c9204624650',
+  tokenAddress: '0x05f4a42e251f2d52b8ed15E9FEdAacFcEF1FAD27',
+  callFrom: '0xD551234Ae421e3BCBA99A0Da6d736074f22192FF',
+  transactionFrom: '0xD551234Ae421e3BCBA99A0Da6d736074f22192FF',
+  fromAddress: '0xD551234Ae421e3BCBA99A0Da6d736074f22192FF',
+  toAddress: '0x24B314EF41911DE1377F8DCF8e7061a2B630dE41',
+  tokenValue: '5753000000000000',
+  logIndex: 0,
+  traceAddress: [],
+  status: true,
+  timestamp: 1552557692 }
+{ blockNumber: 7366486,
+  transactionHash: '0x8943175a73ee70f55ceceac34a14aa2f43336af810899c7afa8b4b05c13efe24',
+  tokenAddress: '0x17609152b35dcc57c5CDe9Fffa204f30767c462e',
+  callFrom: '0x093Bff3639B42295Aee51821D444996b9178E03b',
+  transactionFrom: '0x093Bff3639B42295Aee51821D444996b9178E03b',
+  fromAddress: '0x093Bff3639B42295Aee51821D444996b9178E03b',
+  toAddress: '0x8c7D8E634344E16964B9922C42Af359912EC732c',
+  tokenValue: '13478000000000',
+  logIndex: 1,
+  traceAddress: [],
+  status: true,
+  timestamp: 1552557692 }
+
+```
+
+**Return result description**
+
+| Attribute   | Type      | Description                                                                                |
+|-------------|-----------|--------------------------------------------------------------------------------------------|
+| `blockNumber`| *integer*  | Hash of the block that this function call was mined in         |
+| `transactionHash` | *string* | Hash of the transaction which contained this function call             |
+| `tokenAddress`   | *string* | Address of the erc20 token |
+| `callFrom` | *string*   | Address which initiated this erc20 token transfer  |
+| `transactionFrom` | *string*   | Address which initiated the transaction which initiated erc20 token transfer |
+| `fromAddress`| *string*  | Address from which these tokens are sent      |
+| `toAddress` | *string* |  Address into which these tokens are received      |
+| `tokenValue`   | *string* | Number of tokens transferred |
+| `logIndex` | *integer*   | Location of the log which contains this Event       |
+| `traceAddress` | *array*   | Location of this function call in the trace of this transaction |
+| `status`| *boolean*  | Success or failure of this token transfer       |
+| `timestamp` | *integer* | Unix epoch time in which this function call was mined              |
+### erc20BalanceDiff
+> Stream of erc20 token balance diffs that have been confirmed on the ethereum mainnet.
+
+Connect to the websockets server after installing the package and subscribe to the stream
+
+```javascript
+const {TokenAnalyst} = require('@tokenanalyst/sdk');
+
+const ta = new TokenAnalyst()
+
+ta.streams.erc20BalanceDiff.subscribe(console.log);
+```
+
+Expected Result
+
+```json
+{ blockNumber: 7366583,
+  transactionHash: '0xc00235373e28058c188b403bd7e8d35075d0ac049a84a4e4518f21bddafc52b8',
+  transactionIndex: 105,
+  tokenAddress: '0xF629cBd94d3791C9250152BD8dfBDF380E2a3B9c',
+  holderAddress: '0xcd166AF227279dD0FBbd9b8b4A7385716813CFab',
+  balanceFrom: '1134938463080000000000',
+  balanceTo: '1499033045270000000000',
+  timestamp: 1552558989 }
+{ blockNumber: 7366583,
+  transactionHash: '0xbf72fbe93e45f4d94c008f42cf610266e072c2db607bab2c2cc233021fddfc72',
+  transactionIndex: 110,
+  tokenAddress: '0x954b5De09A55e59755aCBda29e1Eb74A45D30175',
+  holderAddress: '0x2a0c0DBEcC7E4D658f48E01e3fA353F44050c208',
+  balanceFrom: '5671226144255697762481040',
+  balanceTo: '5207932777807932213638498',
+  timestamp: 1552558989 }
+
+```
+
+**Return result description**
+
+| Attribute   | Type      | Description                                                                                |
+|-------------|-----------|--------------------------------------------------------------------------------------------|
+| `blockNumber`| *integer*  | Hash of the block that this function call was mined in         |
+| `transactionHash` | *string* | Hash of the transaction which contained this function call             |
+| `tokenAddress`   | *string* | Address of the erc20 token |
+| `holderAddress` | *string*   | Address of the token holder  |
+| `balanceFrom` | *string*   | Final balance after the transaction |
+| `balanceTo`| *string*  | Initial balance before the transaction      |
+| `timestamp` | *integer* | Unix epoch time in which this function call was mined              |
+
 ### transactionsWithLabelsAndPrice
 > Stream of transactions that have been confirmed on the Ethereum Mainnet with labels for certain addresses and USD value of ETH transacted
 

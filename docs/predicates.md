@@ -101,7 +101,8 @@ Expected Result
 | **FromOrToEntityExists** | -                    | new FromOrToEntityExists()                                     | Filter for transactions where either the sender or recipient has an entity tag in our database                |
 | **FromAddress**          | *string*             | new FromAddress("0x0d070796395 2f2fba59dd06f2b425ace40b492fe") | Filter for transactions where the sender's address exactly matches the specified input.                       |
 | **ToAddress**            | *string*             | new ToAddress("0xcbb490f8034d a4591c677865863dd50a89014ed")    | Filter for transactions where the recipient's address exactly matches the specified input.                    |
-
+| **TokenAddress**          | *string*             | new TokenAddress("0x0d070796395 2f2fba59dd06f2b425ace40b492fe") | Filter for transactions where the token's address exactly matches the specified input.                       |
+| **HolderAddress**            | *string*             | new HolderAddress("0xcbb490f8034d a4591c677865863dd50a89014ed")    | Filter for transactions where the holder's address exactly matches the specified input.     
 
 ## List of Entities
 
