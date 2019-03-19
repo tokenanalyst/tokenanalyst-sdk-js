@@ -9,7 +9,7 @@ export class TokenAnalyst {
   private onConnected: Promise<SocketIOClient.Socket>;
   private streams: object;
 
-  constructor(url = "http://ws.tokenanalyst.io:8000/v1") {
+  constructor(url = "https://ws.tokenanalyst.io:8000/v1") {
     console.log(`connecting to ${url}`);
 
     if(typeof window !== 'undefined' && window) {
