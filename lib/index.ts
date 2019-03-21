@@ -17,7 +17,7 @@ export class TokenAnalyst {
       ga.initialize('UA-113322596-4');
       ga.create('UA-113322596-4');
       ga.pageview('class-init');
-    };
+    }
 
     this.onConnected = new Promise(function(resolve, reject) {
       const socket = io.connect(
@@ -85,6 +85,21 @@ export class TokenAnalyst {
         this.onConnected,
         "eth-ongoing-erc20tokenbalancediff_event",
         "Erc20 balance diff",
+      ),
+      prices: new Stream(
+          this.onConnected,
+          "price_stream_event",
+          "Token prices stream",
+      ),
+      btcBlocks: new Stream(
+          this.onConnected,
+          "graph-btc-confirmed-blocks_event",
+          "BTC blocks with > 6 confirmations",
+      ),
+      btcTransactions: new Stream(
+          this.onConnected,
+          "graph-btc-confirmed-transactions_event",
+          "BTC transactions with > 6 confirmations",
       )
     };
   }

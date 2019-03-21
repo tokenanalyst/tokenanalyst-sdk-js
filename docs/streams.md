@@ -1,9 +1,94 @@
 ## Data Streams {docsify-ignore}
 
-### smartContractFunctionCalls
+### BTC
+
+#### btcBlocks
+> Retrieves confirmed blocks from the Bitcoin network. Blocks are considered confirmed after they have had 6 confirmations or more
+
+Connect to the websockets server after installing the package and subscribe to the stream
+
+```javascript
+const {TokenAnalyst} = require('@tokenanalyst/sdk');
+
+const ta = new TokenAnalyst();
+
+ta.streams.btcBlocks.subscribe(console.log);
+```
+
+Expected result
+
+```json
+
+```
+
+#### btcTransactions
+> Retrieves confirmed transactions from the Bitcoin network. Transactions are considered confirmed after they have had 6 confirmation or more
+
+
+Connect to the websockets server after installing the package and subscribe to the stream
+
+```javascript
+const {TokenAnalyst} = require('@tokenanalyst/sdk');
+
+const ta = new TokenAnalyst();
+
+ta.streams.btcTransactions.subscribe(console.log);
+```
+
+Expected result
+
+```json
+{
+  "transaction": {
+    "transactionId": "6ed69f17e9fd0fec03aa54abd66b6222cf05d1c4716cc225019fbfeac4b12b7e",
+    "blockHash": "00000000000000000008ca147511a6426fe1aa4b570b8cd77493bdfe98ad68d7",
+    "hash": "4cde292cff6bfdb05c49b779a03afb86d9a27a48dcf666e45ab122c72bba1456",
+    "version": 1,
+    "size": 417,
+    "vsize": 201,
+    "weight": 801,
+    "locktime": 568115
+  },
+  "inputs": [
+    {
+      "previousTransactionId": "e9604279a80a80f319dedda74792604e86fec7b4f4f96623812f77b1622fbc66",
+      "vout": 1,
+      "scriptSig": {},
+      "sequence": 4294967293
+    }
+  ],
+  "outputs": [
+    {
+      "index": 0,
+      "bitcoinValue": 0.1272065,
+      "scriptPubKey": {},
+      "scriptPubKeyReqSigs": 1,
+      "scriptPubKeyType": "pubkeyhash",
+      "scriptPubKeyAddresses": [
+        "1Pcjc5YVELMhYboUxjpcLifA8dmfqZsapH"
+      ]
+    },
+    {
+      "index": 1,
+      "bitcoinValue": 0.89926925,
+      "scriptPubKey": {},
+      "scriptPubKeyReqSigs": 1,
+      "scriptPubKeyType": "witness_v0_scripthash",
+      "scriptPubKeyAddresses": [
+        "bc1qy52ve9ygrducgvu3hylxupf3eescshjfglytsxsm025auazhcdmq6w3z24"
+      ]
+    }
+  ]
+}
+```
+
+### ETH
+
+#### smartContractFunctionCalls
 > Stream of internal and external Function calls that have been confirmed on the ethereum mainnet.
 
 Connect to the websockets server after installing the package and subscribe to the stream
+
 
 ```javascript
 const {TokenAnalyst} = require('@tokenanalyst/sdk');
@@ -70,7 +155,7 @@ Expected Result
 | `status` | *boolean*   | Success or failure of this function call                |
 
 
-### smartContractEvents
+#### smartContractEvents
 > Stream of Events that have been confirmed on the ethereum mainnet.
 
 Connect to the websockets server after installing the package and subscribe to the stream
@@ -124,7 +209,7 @@ Expected Result
 | `decodedParameterValues`   | *array* | Decoded parameters of this event |
 | `timestamp`   | *integer* | Unix epoch time in which this event was mined              |
 
-### erc20TokenTransfer
+#### erc20TokenTransfer
 > Stream of erc20 token transfers that have been confirmed on the ethereum mainnet.
 
 Connect to the websockets server after installing the package and subscribe to the stream
@@ -183,7 +268,7 @@ Expected Result
 | `traceAddress` | *array*   | Location of this function call in the trace of this transaction |
 | `status`| *boolean*  | Success or failure of this token transfer       |
 | `timestamp` | *integer* | Unix epoch time in which this function call was mined              |
-### erc20BalanceDiff
+#### erc20BalanceDiff
 > Stream of erc20 token balance diffs that have been confirmed on the ethereum mainnet.
 
 Connect to the websockets server after installing the package and subscribe to the stream
@@ -230,7 +315,7 @@ Expected Result
 | `balanceTo`| *string*  | Initial balance before the transaction      |
 | `timestamp` | *integer* | Unix epoch time in which this function call was mined              |
 
-### transactionsWithLabelsAndPrice
+#### transactionsWithLabelsAndPrice
 > Stream of transactions that have been confirmed on the Ethereum Mainnet with labels for certain addresses and USD value of ETH transacted
 
 Connect to the websockets server after installing the package and subscribe to the stream
@@ -304,7 +389,7 @@ Expected Result
 | `TX.R`                | *string*  | ECDSA signature r                                                                                                          |
 | `TX.S`                | *string*  | ECDSA signature s                                                                                                          |
 
-### ethVolume24hToEntity
+#### ethVolume24hToEntity
 > Stream containing the total amount of ETH (and it's corresponding USD value) that has flowed into specific entities during a 24 hour window. 
 
 
@@ -342,7 +427,7 @@ Expected Result
 | `USD_VALUE` | *float*   | USD value of the amount of ETH that has flowed to this entity in the specified time window |
 
 
-### ethVolume24hFromEntity
+#### ethVolume24hFromEntity
 > Stream containing the total amount of ETH (and it's corresponding USD value) that has flowed out of specific entities during a 24 hour window. 
 
 Subscribe to the stream (similar to above)
@@ -380,7 +465,7 @@ Expected Result
 
 
 
-### ethVolume3hToEntity
+#### ethVolume3hToEntity
 > Stream containing the total amount of ETH (and it's corresponding USD value) that has flowed into specific entities during a 3 hour time window. 
 
 
@@ -419,7 +504,7 @@ Expected Result
 
 
 
-### ethVolume3hFromEntity
+#### ethVolume3hFromEntity
 > Stream containing the total amount of ETH (and it's corresponding USD value) that has flowed out of specific entities during a 3 hour time window. 
 
 Subscribe to the stream (similar to above)
