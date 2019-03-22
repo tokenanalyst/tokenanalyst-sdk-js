@@ -37,6 +37,24 @@ export class TokenAnalyst {
     });
 
     this.streams = {
+      // COMMON ---------------
+      prices: new Stream(
+          this.onConnected,
+          "price_stream_event",
+          "Token prices stream",
+      ),
+      // BTC ---------------
+      btcBlocks: new Stream(
+          this.onConnected,
+          "graph-btc-confirmed-blocks_event",
+          "BTC blocks with > 6 confirmations",
+      ),
+      btcTransactions: new Stream(
+          this.onConnected,
+          "graph-btc-confirmed-transactions_event",
+          "BTC transactions with > 6 confirmations",
+      ),
+      // ETH ---------------
       transactionsWithLabelsAndPrice: new Stream(
         this.onConnected,
         "API_S_TXS6_LABELS_JPRICE_FETH_GMINUTE_event",
@@ -86,21 +104,11 @@ export class TokenAnalyst {
         "eth-ongoing-erc20tokenbalancediff_event",
         "Erc20 balance diff",
       ),
-      prices: new Stream(
+      ethLargeTransactions: new Stream(
           this.onConnected,
-          "price_stream_event",
-          "Token prices stream",
+          "API_S_TXS6_LABELS_JPRICE_FETH_GMINUTE_GT500KUSDVALUE_event",
+          "ETH transactions with 6 confirmations or more, with a value of more than USD 500k",
       ),
-      btcBlocks: new Stream(
-          this.onConnected,
-          "graph-btc-confirmed-blocks_event",
-          "BTC blocks with > 6 confirmations",
-      ),
-      btcTransactions: new Stream(
-          this.onConnected,
-          "graph-btc-confirmed-transactions_event",
-          "BTC transactions with > 6 confirmations",
-      )
     };
   }
 }
