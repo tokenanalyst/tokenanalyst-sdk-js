@@ -541,3 +541,16 @@ Expected Result
 | `USD_VALUE` | *float*   | USD value of the amount of ETH that has flowed from this entity in the specified window    |
 
 
+#### ethLargeTransactions
+> Retrieves confirmed transactions from the Ethereum network (with 6 or more confirmations) which have a value of more than 
+500,000 USD. 
+
+Connect to the websockets server after installing the package and subscribe to the stream
+
+```javascript
+const {TokenAnalyst} = require('@tokenanalyst/sdk');
+
+const ta = new TokenAnalyst();
+
+ta.streams.ethLargeTransactions.subscribe(console.log);
+```
