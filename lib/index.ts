@@ -138,7 +138,7 @@ class Stream {
       params: {
         limit: `${limit}`
       }
-    }))
+    }).then(r => r.data.map((d: { data: any; }) => d.data)))
   }
 
   subscribe(onEvent: Function, predicates: Array<predicates.Predicate> = Array()) {
