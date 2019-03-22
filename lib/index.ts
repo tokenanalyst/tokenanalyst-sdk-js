@@ -111,7 +111,6 @@ export class TokenAnalyst {
         "API_S_TXS6_LABELS_JPRICE_FETH_GMINUTE_GT500KUSDVALUE",
         "ETH transactions with 6 confirmations or more, with a value of more than USD 500k",
       )
-
     };
   }
 }
