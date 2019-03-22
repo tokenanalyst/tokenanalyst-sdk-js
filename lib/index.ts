@@ -1,8 +1,7 @@
 /*jshint esversion: 6 */
 import * as io from "socket.io-client";
-import * as https from "https";
-import rp, { RequestPromise } from 'request-promise';
 import * as predicates from "./predicates";
+import axios from 'axios';
 
 declare function require(path: string): any;
 
@@ -134,15 +133,12 @@ class Stream {
     this.streamPredicates = streamPredicates;
   }
 
-  recent(limit: Number): RequestPromise {
-    var options: rp.Options = {
-        uri: `${this.streamData}/${this.topicName}`,
-        qs: {
-            limit: `${limit}` 
-        },
-        json: true 
-    };
-    return(rp(options))
+  recent(limit: Number) {
+    return(axios.get(`${this.streamData}/${this.topicName}`,{
+      params: {
+        limit: `${limit}`
+      }
+    }))
   }
 
   subscribe(onEvent: Function, predicates: Array<predicates.Predicate> = Array()) {
