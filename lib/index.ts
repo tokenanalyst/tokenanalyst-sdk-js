@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 import * as io from "socket.io-client";
 import * as predicates from "./predicates";
+import axios from 'axios';
 
 declare function require(path: string): any;
 
@@ -37,103 +38,112 @@ export class TokenAnalyst {
     });
 
     this.streams = {
-      // COMMON ---------------
+      // common
       prices: new Stream(
           this.onConnected,
-          "price_stream_event",
+          "price_stream",
           "Token prices stream",
       ),
-      // BTC ---------------
+      // btc 
       btcBlocks: new Stream(
           this.onConnected,
-          "graph-btc-confirmed-blocks_event",
+          "graph-btc-confirmed-blocks",
           "BTC blocks with > 6 confirmations",
       ),
       btcTransactions: new Stream(
           this.onConnected,
-          "graph-btc-confirmed-transactions_event",
+          "graph-btc-confirmed-transactions",
           "BTC transactions with > 6 confirmations",
       ),
-      // ETH ---------------
+      // ethereum
       transactionsWithLabelsAndPrice: new Stream(
         this.onConnected,
-        "API_S_TXS6_LABELS_JPRICE_FETH_GMINUTE_event",
+        "API_S_TXS6_LABELS_JPRICE_FETH_GMINUTE",
         "Last transactions which have 6 confirmations with labels and USD price"
       ),
       ethVolume3hToEntity: new Stream(
         this.onConnected,
-        "API_T_TXS6_LABELS_JPRICE_GTOENTITY_W3H_event",
+        "API_T_TXS6_LABELS_JPRICE_GTOENTITY_W3H",
         "3h ETH volume towards labelled entities",
         Array(new predicates.ToEntityExists())
       ),
       ethVolume3hFromEntity: new Stream(
         this.onConnected,
-        "API_T_TXS6_LABELS_JPRICE_GFROMENTITY_W3H_event",
+        "API_T_TXS6_LABELS_JPRICE_GFROMENTITY_W3H",
         "3h ETH volume from labelled entities",
         Array(new predicates.FromEntityExists())
       ),   
       ethVolume24hToEntity: new Stream(
         this.onConnected,
-        "API_T_TXS6_LABELS_JPRICE_GTOENTITY_WDAY_event",
+        "API_T_TXS6_LABELS_JPRICE_GTOENTITY_WDAY",
         "24h ETH volume towards labelled entities",
         Array(new predicates.ToEntityExists())
       ),
       ethVolume24hFromEntity: new Stream(
         this.onConnected,
-        "API_T_TXS6_LABELS_JPRICE_GFROMENTITY_WDAY_event",
+        "API_T_TXS6_LABELS_JPRICE_GFROMENTITY_WDAY",
         "24h ETH volume from labelled entities",
         Array(new predicates.FromEntityExists())
       ),
       smartContractEvents: new Stream(
         this.onConnected,
-        "eth-ongoing-event_event",
+        "eth-ongoing-event",
         "Smart Contract emmited events",
       ),
       smartContractFunctionCalls: new Stream(
         this.onConnected,
-        "eth-ongoing-functioncall_event",
+        "eth-ongoing-functioncall",
         "Function calls to smart contracts",
       ),
       erc20TokenTransfer: new Stream(
         this.onConnected,
-        "eth-ongoing-erc20tokentransfer_event",
+        "eth-ongoing-erc20tokentransfer",
         "Erc20 token transfer",
       ),
       erc20BalanceDiff: new Stream(
         this.onConnected,
-        "eth-ongoing-erc20tokenbalancediff_event",
+        "eth-ongoing-erc20tokenbalancediff",
         "Erc20 balance diff",
       ),
       ethLargeTransactions: new Stream(
-          this.onConnected,
-          "API_S_TXS6_LABELS_JPRICE_FETH_GMINUTE_GT500KUSDVALUE_event",
-          "ETH transactions with 6 confirmations or more, with a value of more than USD 500k",
-      ),
+        this.onConnected,
+        "API_S_TXS6_LABELS_JPRICE_FETH_GMINUTE_GT500KUSDVALUE",
+        "ETH transactions with 6 confirmations or more, with a value of more than USD 500k",
+      )
     };
   }
 }
 
 class Stream {
   private description: string;
-  private eventName: string;
+  private topicName: string;
   private socket: Promise<SocketIOClient.Socket>;
   private streamPredicates: Array<predicates.Predicate>;
+  private streamData: string = "https://ws.tokenanalyst.io/streamdata";
 
   constructor(
     socket: Promise<SocketIOClient.Socket>,
-    eventName: string,
+    topicName: string,
     description: string,
     streamPredicates: Array<predicates.Predicate> = Array()
   ) {
-    this.eventName = eventName;
+    this.topicName = topicName;
     this.description = description;
     this.socket = socket;
     this.streamPredicates = streamPredicates;
   }
 
+  recent(limit: Number) {
+    return(axios.get(`${this.streamData}/${this.topicName}`,{
+      params: {
+        limit: `${limit}`
+      }
+    }))
+  }
+
   subscribe(onEvent: Function, predicates: Array<predicates.Predicate> = Array()) {
     this.socket.then((s: SocketIOClient.Socket) => {
-      s.on(this.eventName, (event: any) => {
+      s.on(`${this.topicName}_event`, (event: any) => {
         predicates.push(...this.streamPredicates)
         if (predicates.map(p => p.isTrue(event)).every(b => b)) 
           onEvent(event);
