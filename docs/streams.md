@@ -561,5 +561,5 @@ ta.streams.ethLargeTransactions.subscribe(console.log);
 #### erc20TokenTransferWithSymbolAndUSDValue
 > Parsed ERC20 token transfers with USD value
 
-#### erc20LargeTokenTransfers
+#### erc20LargeTokenTransfer
 > ERC20 token transfer with a value of more than USD 500k

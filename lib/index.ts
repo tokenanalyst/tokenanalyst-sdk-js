@@ -7,7 +7,6 @@ declare function require(path: string): any;
 
 export class TokenAnalyst {
 
-
   private onConnected: Promise<SocketIOClient.Socket>;
   private streams: object;
 
@@ -116,7 +115,6 @@ export class TokenAnalyst {
         "API_ERC20_TRANSFERS_WSYMBOL",
         "Parsed ERC20 token transfers, including the token symbol",
       ),
-
       erc20TokenTransferWithSymbolAndUSDValue: new Stream(
         this.onConnected,
         "API_ERC20_TRANSFERS_WSYMBOL_WUSDVALUE",
