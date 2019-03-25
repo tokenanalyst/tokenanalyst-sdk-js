@@ -123,7 +123,7 @@ export class TokenAnalyst {
         "Parsed ERC20 token transfers with USD value",
       ),
 
-      erc20LargeTokenTransfers: new Stream(
+      erc20LargeTokenTransfer: new Stream(
         this.onConnected,
         "API_ERC20_TRANSFERS_WSYMBOL_GT500KUSDVALUE",
         "ERC20 token transfer with a value of more than USD 500k",
