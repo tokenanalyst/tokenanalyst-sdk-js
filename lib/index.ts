@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 import * as io from "socket.io-client";
 import * as predicates from "./predicates";
-import Axios from 'axios';
+import axios from 'axios';
 
 declare function require(path: string): any;
 
@@ -137,7 +137,7 @@ class Stream {
   private topicName: string;
   private socket: Promise<SocketIOClient.Socket>;
   private streamPredicates: Array<predicates.Predicate>;
-  private streamData: string = "http://localhost:3008/streamdata";
+  private streamData: string = "https://ws.tokenanalyst.io/streamdata";
 
   constructor(
     socket: Promise<SocketIOClient.Socket>,
@@ -152,7 +152,7 @@ class Stream {
   }
 
   recent(limit: Number) {
-    return (Axios.get(`${this.streamData}/${this.topicName}`, {
+    return(axios.get(`${this.streamData}/${this.topicName}`,{
       params: {
         limit: `${limit}`
       }
