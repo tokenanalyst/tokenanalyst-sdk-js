@@ -113,7 +113,7 @@ export class TokenAnalyst {
       ),
       erc20TokenTransferWithSymbol: new Stream(
         this.onConnected,
-        "S_ERC20_TRANSFERS_WSYMBOL",
+        "API_ERC20_TRANSFERS_WSYMBOL",
         "Parsed ERC20 token transfers, including the token symbol",
       ),
 
