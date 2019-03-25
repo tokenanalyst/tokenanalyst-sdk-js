@@ -6,21 +6,22 @@ import Axios from 'axios';
 declare function require(path: string): any;
 
 export class TokenAnalyst {
-  
+
+
   private onConnected: Promise<SocketIOClient.Socket>;
   private streams: object;
 
   constructor(url = "https://ws.tokenanalyst.io:8000/v1") {
     console.log(`connecting to ${url}`);
 
-    if(typeof window !== 'undefined' && window) {
+    if (typeof window !== 'undefined' && window) {
       const ga = require('./ga');
       ga.initialize('UA-113322596-4');
       ga.create('UA-113322596-4');
       ga.pageview('class-init');
     }
 
-    this.onConnected = new Promise(function(resolve, reject) {
+    this.onConnected = new Promise(function (resolve, reject) {
       const socket = io.connect(
         url,
         {
@@ -40,20 +41,20 @@ export class TokenAnalyst {
     this.streams = {
       // common
       prices: new Stream(
-          this.onConnected,
-          "price_stream",
-          "Token prices stream",
+        this.onConnected,
+        "price_stream",
+        "Token prices stream",
       ),
-      // btc 
+      // btc
       btcBlocks: new Stream(
-          this.onConnected,
-          "graph-btc-confirmed-blocks",
-          "BTC blocks with > 6 confirmations",
+        this.onConnected,
+        "graph-btc-confirmed-blocks",
+        "BTC blocks with > 6 confirmations",
       ),
       btcTransactions: new Stream(
-          this.onConnected,
-          "graph-btc-confirmed-transactions",
-          "BTC transactions with > 6 confirmations",
+        this.onConnected,
+        "graph-btc-confirmed-transactions",
+        "BTC transactions with > 6 confirmations",
       ),
       // ethereum
       transactionsWithLabelsAndPrice: new Stream(
@@ -72,7 +73,7 @@ export class TokenAnalyst {
         "API_T_TXS6_LABELS_JPRICE_GFROMENTITY_W3H",
         "3h ETH volume from labelled entities",
         Array(new predicates.FromEntityExists())
-      ),   
+      ),
       ethVolume24hToEntity: new Stream(
         this.onConnected,
         "API_T_TXS6_LABELS_JPRICE_GTOENTITY_WDAY",
@@ -109,6 +110,23 @@ export class TokenAnalyst {
         this.onConnected,
         "API_S_TXS6_LABELS_JPRICE_FETH_GMINUTE_GT500KUSDVALUE",
         "ETH transactions with 6 confirmations or more, with a value of more than USD 500k",
+      ),
+      erc20TokenTransferWithSymbol: new Stream(
+        this.onConnected,
+        "S_ERC20_TRANSFERS_WSYMBOL",
+        "Parsed ERC20 token transfers, including the token symbol",
+      ),
+
+      erc20TokenTransferWithSymbolAndUSDValue: new Stream(
+        this.onConnected,
+        "API_ERC20_TRANSFERS_WSYMBOL_WUSDVALUE",
+        "Parsed ERC20 token transfers with USD value",
+      ),
+
+      erc20LargeTokenTransfers: new Stream(
+        this.onConnected,
+        "API_ERC20_TRANSFERS_WSYMBOL_GT500KUSDVALUE",
+        "ERC20 token transfer with a value of more than USD 500k",
       )
     };
   }
@@ -134,7 +152,7 @@ class Stream {
   }
 
   recent(limit: Number) {
-    return(Axios.get(`${this.streamData}/${this.topicName}`,{
+    return (Axios.get(`${this.streamData}/${this.topicName}`, {
       params: {
         limit: `${limit}`
       }
@@ -144,8 +162,8 @@ class Stream {
   subscribe(onEvent: Function, predicates: Array<predicates.Predicate> = Array()) {
     this.socket.then((s: SocketIOClient.Socket) => {
       s.on(`${this.topicName}_event`, (event: any) => {
-        predicates.push(...this.streamPredicates)
-        if (predicates.map(p => p.isTrue(event)).every(b => b)) 
+        predicates.push(...this.streamPredicates);
+        if (predicates.map(p => p.isTrue(event)).every(b => b))
           onEvent(event);
       });
     });
