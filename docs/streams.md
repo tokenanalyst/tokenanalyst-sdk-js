@@ -566,3 +566,10 @@ ta.streams.ethLargeTransactions.subscribe(console.log);
 
 #### erc20TokenTransfer100k
 > ERC20 token transfer with a value of more than USD 100k
+
+#### erc20StableCoinTransferWithSymbolAndUSDValue 
+> ERC20 stable coin transfer with USD value 
+
+#### erc20StableCoinTransfer100k 
+> ERC20 stable coin transfer with a value of more than USD 100k
+
