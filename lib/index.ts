@@ -132,6 +132,11 @@ export class TokenAnalyst {
         "API_ERC20_TRANSFERS_WSYMBOL_GT100KUSDVALUE",
         "ERC20 token transfer with a value of more than USD 100k",
       ),
+      erc20StableCoinTransferWithSymbolAndUSDValue: new Stream(
+         this.onConnected,
+        "API_ERC20_TRANSFERS_STABLE_WSYMBOL_WUSDVALUE",
+        "ERC20 stable coin transfer with USD value",
+      ),
       erc20StableCoinTransfer100k: new Stream(
          this.onConnected,
         "API_ERC20_TRANSFERS_STABLE_WSYMBOL_GT100KUSDVALUE",
