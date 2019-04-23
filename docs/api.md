@@ -175,9 +175,9 @@ The result:
 
 ```
 
-#### Stable coin prices
+#### Stablecoin Prices
 
-To retrieve stable coin prices use the following API endpoint. 
+To retrieve stablecoin prices use the following API endpoint. 
 
 ```shell
 $ curl https://ws.tokenanalyst.io/analytics/private/last?job=usdc_price_30day_v1
