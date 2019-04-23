@@ -11,7 +11,7 @@ info@tokenanalyst.io
 #### 30 Days Bitcoin On-Chain Volume
 
 ```shell
-$ curl https://ws.tokenanalyst.io/analytics/last?job=btc_volume_30day
+$ curl https://ws.tokenanalyst.io/analytics/private/last?job=btc_volume_30day
 &format=json&key=API_KEY
 ```
 
@@ -30,7 +30,7 @@ The result:
 #### 30 Days Ethereum On-Chain Volume
 
 ```shell
-$ curl https://ws.tokenanalyst.io/analytics/last?job=eth_volume_30day
+$ curl https://ws.tokenanalyst.io/analytics/private/last?job=eth_volume_30day
 &format=json&key=API_KEY
 ```
 
@@ -54,7 +54,7 @@ Currently supported exchanges are: binance, bittrex, bitstamp, poloniex, bitmex,
 #### 24h Inflow to Exchanges
 
 ```shell
-$ curl https://ws.tokenanalyst.io/analytics/last?job=btc_Bittrex_inflow_stats_24h_v2
+$ curl https://ws.tokenanalyst.io/analytics/private/last?job=btc_Bittrex_inflow_stats_24h_v2
 &format=json&key=API_KEY
 ```
 
@@ -72,7 +72,7 @@ The result:
 #### 24h Outflow from Exchanges
 
 ```shell
-$ curl https://ws.tokenanalyst.io/analytics/last?job=btc_Bitfinex_outflow_stats_24h_v1
+$ curl https://ws.tokenanalyst.io/analytics/private/last?job=btc_Bitfinex_outflow_stats_24h_v1
 &format=json&key=API_KEY
 ```
 
@@ -202,7 +202,7 @@ Currently we support: BNB, BAT, GNT, ZIL, MKR, OMG, ZRX, REP
 #### 24h ERC-20 Token On-Chain Transactions
 
 ```shell
-$ curl https://ws.tokenanalyst.io/analytics/last?job=bat_txn_count_24h
+$ curl https://ws.tokenanalyst.io/analytics/private/last?job=bat_txn_count_24h
 &format=json&key=API_KEY
 ```
 
@@ -215,7 +215,7 @@ The result:
 #### 24h ERC-20 Token On-Chain Volumes
 
 ```shell
-curl https://ws.tokenanalyst.io/analytics/last?job=bnb_volume_24h
+curl https://ws.tokenanalyst.io/analytics/private/last?job=bnb_volume_24h
 format=json&key=API_KEY
 ```
 
