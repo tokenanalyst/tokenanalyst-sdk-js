@@ -59,4 +59,3 @@ For building the NodeJS module to interface the API
 ```
 $ npm run build-node
 ```
-
