@@ -46,7 +46,7 @@ export class TokenAnalyst {
       erc20TokenTransferWithSymbolAndUSDValue: new Stream(
         streamdataUrl,
         this.onConnected,
-        "API_ERC20_TRANSFERS_WSYMBOL_WPRICE",
+        "API_ERC20_TRANSFERS_WSYMBOL_WUSDVALUE",
         "Parsed ERC20 token transfers with USD value"
       ),
       erc20TokenTransfer100k: new Stream(
